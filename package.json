@@ -23,11 +23,13 @@
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./tui-themes": "./lib/tui-themes.js",
     "./package.json": "./package.json"
   },
   "files": [
     "lib/index.js",
     "lib/client.js",
+    "lib/tui-themes.js",
     "cordis.patch.yml",
     "themes"
   ],

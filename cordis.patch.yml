@@ -5,3 +5,11 @@
 - insert:
     - id: catppuccin
       name: 'dsh-catppuccin'
+    # dsh-TUI theme sync: idempotently copies the four Catppuccin theme
+    # JSONs into ~/.dsh-tui/themes/ on activation. No inject, so it activates
+    # in EVERY profile — in a dsh-tui profile this is what makes the
+    # one-command install work (dsh-TUI reads themes only from that
+    # directory); in a web/desktop profile it keeps themes in sync for users
+    # who also run dsh-TUI; with no ~/.dsh-tui on disk it is a strict no-op.
+    - id: dsh-catppuccin-tui-themes
+      name: 'dsh-catppuccin/tui-themes'
