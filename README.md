@@ -146,6 +146,19 @@ Choice is saved per browser and restored at boot.
 
 ## FAQ
 
+**Q: Web UI fails to boot with “Failed to load plugins / dsh-catppuccin”.**
+
+Older packages require `@deepseek-ai/dsh-client-runtime`, which newer DSH
+client module tables no longer expose. The fix is included in 0.2.5 and
+later ([issue #3](https://github.com/zhijun-dai/Catppuccin-dsh-theme/issues/3)).
+If npm still serves an older release, install the current GitHub version:
+
+```sh
+dsh plugin --profile web add github:zhijun-dai/Catppuccin-dsh-theme
+```
+
+Use `--profile desktop` for DSH Desktop, then restart the corresponding app.
+
 **Q: I installed the plugin but don't see the themes in Settings.**
 
 Make sure the profile you installed into is the one `dsh web` runs

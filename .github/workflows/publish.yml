@@ -13,6 +13,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+      - name: Verify release tag matches the package version
+        run: node -e 'const p = require("./package.json"); if (process.env.GITHUB_REF_NAME !== `v${p.version}`) throw new Error("tag/package version mismatch")'
+      # npm publish runs prepublishOnly (generation and regression tests).
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

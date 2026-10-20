@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  client:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 24]
+        theme: [0.1.6-alpha.2, 0.2.1-rc.2]
+    env:
+      DSH_THEME_VERSION: ${{ matrix.theme }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+      - name: Download the DSH ThemeRuntime
+        run: |
+          npm pack "@deepseek-ai/dsh-client-ui-theme@$DSH_THEME_VERSION" --ignore-scripts --pack-destination "$RUNNER_TEMP" --registry=https://registry.npmjs.org
+          tar -xf "$RUNNER_TEMP/deepseek-ai-dsh-client-ui-theme-$DSH_THEME_VERSION.tgz" -C "$RUNNER_TEMP" package/lib/client.js
+      - name: Test with the published DSH ThemeRuntime
+        run: npm test
+        env:
+          DSH_THEME_CLIENT_PATH: ${{ runner.temp }}/package/lib/client.js

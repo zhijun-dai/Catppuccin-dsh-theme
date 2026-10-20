@@ -29,6 +29,21 @@ or the token tables in `lib/client.js` by hand.
 - Follow the Catppuccin [style guide](https://github.com/catppuccin/catppuccin)
   for any palette-related naming.
 
+## Verification and releases
+
+Run `npm test` to check client loading, generated bundle consistency, theme
+restoration, and picker subscriptions. Tests use Node's built-in test runner
+and need no installed dependencies. CI also runs them against the published
+DSH 0.1.6-alpha.2 and 0.2.1-rc.2 ThemeRuntimes; set `DSH_THEME_CLIENT_PATH` to the package's
+`lib/client.js` to run the same integration check locally. UI components and
+the settings transport are stubbed; this is not a full browser boot test.
+
+Publishing runs `prepublishOnly` to regenerate themes and run the regression
+suite. To release, update `package.json` and `CHANGELOG.md`, commit the changes,
+and push a matching `v<version>` tag. The publish workflow requires the
+repository's `NPM_TOKEN` secret. Verify the official npm `latest` tag before
+closing an issue that affects npm installations.
+
 ## License
 
 All contributions are licensed under the MIT license.

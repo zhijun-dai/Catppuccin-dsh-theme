@@ -135,6 +135,19 @@ dsh web
 
 ## 常见问题
 
+**Q：安装后 Web UI 提示 “Failed to load plugins / dsh-catppuccin”，无法启动？**
+
+旧版插件依赖 `@deepseek-ai/dsh-client-runtime`，新版 DSH 的客户端模块表
+已不再提供它。0.2.5 及以上版本包含修复
+（[issue #3](https://github.com/zhijun-dai/Catppuccin-dsh-theme/issues/3)）。
+如果 npm 仍提供旧版，请安装 GitHub 当前版本：
+
+```sh
+dsh plugin --profile web add github:zhijun-dai/Catppuccin-dsh-theme
+```
+
+DSH Desktop 用户改用 `--profile desktop`，安装后重启对应应用。
+
 **Q：装完在设置里看不到 Catppuccin 行？**
 
 确认装进了 `dsh web` 实际使用的 profile（上面的 `--profile web`），
